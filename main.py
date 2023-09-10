@@ -12,6 +12,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+
 class AutonomousContentAggregator:
     def __init__(self, user_preferences):
         self.user_preferences = user_preferences
@@ -22,7 +23,8 @@ class AutonomousContentAggregator:
         self.search_queries = self.build_search_queries(trending_topics)
 
     def get_trending_topics(self):
-        trending_topics = ["python programming", "machine learning", "data science"]
+        trending_topics = ["python programming",
+                           "machine learning", "data science"]
         return trending_topics
 
     def build_search_queries(self, trending_topics):
@@ -48,6 +50,7 @@ class AutonomousContentAggregator:
         url = f"https://www.example.com/search?q={query}"
         return url
 
+
 class WebContentExtractor:
     def __init__(self, urls):
         self.urls = urls
@@ -68,6 +71,7 @@ class WebContentExtractor:
             'metadata': 'metadata',
         }
         return extracted_content
+
 
 class NLPToolkit:
     def __init__(self, extracted_content):
@@ -97,6 +101,7 @@ class NLPToolkit:
         sentiment_score = self.nlp(content['description'])[0]['score']
         return sentiment_score
 
+
 class ContentCategorization:
     def __init__(self, extracted_content):
         self.extracted_content = extracted_content
@@ -114,10 +119,12 @@ class ContentCategorization:
         return categorized
 
     def group_similar_content(self):
-        content = [self.extracted_content[0]['title'], self.extracted_content[1]['title']]
+        content = [self.extracted_content[0]['title'],
+                   self.extracted_content[1]['title']]
         kmeans = KMeans(n_clusters=3, random_state=0).fit(content)
         labels = kmeans.labels_
         return labels
+
 
 class RecommendationSystem:
     def __init__(self, user_preferences, categorized_content):
@@ -153,6 +160,7 @@ class RecommendationSystem:
         popular_content = []
         return popular_content
 
+
 class SEOOptimizer:
     def __init__(self, extracted_content):
         self.extracted_content = extracted_content
@@ -181,6 +189,7 @@ class SEOOptimizer:
         optimized_structure = content['description']
         return optimized_structure
 
+
 class ContentEnrichment:
     def __init__(self, extracted_content):
         self.extracted_content = extracted_content
@@ -196,6 +205,7 @@ class ContentEnrichment:
     def generate_info(content):
         generated_info = "Additional information"
         return generated_info
+
 
 class ContinuousLearner:
     def __init__(self, user_preferences, user_feedback):
@@ -214,6 +224,7 @@ class ContinuousLearner:
     def optimize_queries():
         optimized_queries = []
         return optimized_queries
+
 
 class UserInterface:
     def __init__(self, recommender):
@@ -245,6 +256,7 @@ class UserInterface:
         browsing_history = []
         return browsing_history
 
+
 if __name__ == "__main__":
     user_preferences = ["python", "programming"]
     user_feedback = ["data science"]
@@ -258,7 +270,8 @@ if __name__ == "__main__":
     sentiments = nlp_toolkit.perform_sentiment_analysis()
     categorization = ContentCategorization(extracted_content)
     categorized_content = categorization.categorize_content()
-    recommendation_system = RecommendationSystem(user_preferences, categorized_content)
+    recommendation_system = RecommendationSystem(
+        user_preferences, categorized_content)
     recommended_content = recommendation_system.recommend_content()
     seo_optimizer = SEOOptimizer(extracted_content)
     optimized_titles = seo_optimizer.optimize_title()
